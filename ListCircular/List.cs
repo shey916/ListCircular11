@@ -118,7 +118,6 @@ namespace ListCircular
                     // 2. El nodo que fue saltado (el eliminado) será recogido por el Garbage Collector.
                     return true; // La eliminación ha terminado
                 }
-
                 // Mover el puntero al siguiente nodo
                 h = h.Next;
             }

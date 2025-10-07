@@ -113,7 +113,7 @@ internal class Program
                 else
                 {
                     // Este es el nuevo mensaje que soluciona tu problema
-                    Console.WriteLine($"\n El número {datoEliminar} NO se eliminó porque no fue encontrado en la lista.");
+                    Console.WriteLine($"\n El número {datoEliminar} No se encontro en la lista");
                     Console.WriteLine("Estado actual de la lista (sin cambios):");
                     myList.Show();
                 }
