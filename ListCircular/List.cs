@@ -15,7 +15,7 @@ namespace ListCircular
             {
                 this.head = null;
             }
-        
+
             public void Add(Node n)
             {
             Node h;
@@ -45,7 +45,7 @@ namespace ListCircular
                 }
 
                 // Caso 3: Insertar en el medio o al final
-                h = head;
+                 h = head;
                 while (h.Next != head)
                 {
                     if (n.Dato < h.Next.Dato)
@@ -64,12 +64,13 @@ namespace ListCircular
             }
 
         // --- Nuevo Método para Eliminar un Nodo ---
-        public void Delete(int datoEliminar)
+        public bool Delete(int datoEliminar)
         {
+            Node h;
             // Caso 1: La lista está vacía
             if (head == null)
             {
-                return; // No hay nada que eliminar
+                return false; // No hay nada que eliminar
             }
 
             // Caso 2: Eliminar la Cabeza (head)
@@ -79,25 +80,28 @@ namespace ListCircular
                 if (head.Next == head)
                 {
                     head = null; // La lista queda vacía
-                    return;
+                    //return;
                 }
-                // Si hay más de un nodo, primero encontramos el último nodo (hh)
-                Node hh = head;
-                while (hh.Next != head)
+                else
                 {
-                    hh = hh.Next;
-                }
+                    // Si hay más de un nodo, primero encontramos el último nodo (hh)
+                    h = head;
+                    while (h.Next != head)
+                    {
+                        h = h.Next;
+                    }
 
-                // Realizamos la eliminación del head:
-                // 1. El último nodo apunta al nuevo head (el segundo nodo)
-                hh.Next = head.Next;
-                // 2. Movemos head al siguiente nodo (lo que era el segundo)
-                head = head.Next;
-                return;
+                    // Realizamos la eliminación del head:
+                    // 1. El último nodo apunta al nuevo head (el segundo nodo)
+                    h.Next = head.Next;
+                    // 2. Movemos head al siguiente nodo (lo que era el segundo)
+                    head = head.Next;
+                }
+                return true;
             }
 
             // Caso 3: Eliminar un nodo en el medio o al final
-            Node h = head; // 'h' será la copia de head para recorrer
+            h = head; // 'h' será la copia de head para recorrer
 
             // Recorremos la lista. Nos detenemos justo ANTES del nodo a eliminar
             // El bucle se detiene cuando h.Next llega al head, por eso se comprueba h.Next.Dato
@@ -112,12 +116,13 @@ namespace ListCircular
                     h.Next = h.Next.Next;
 
                     // 2. El nodo que fue saltado (el eliminado) será recogido por el Garbage Collector.
-                    return; // La eliminación ha terminado
+                    return true; // La eliminación ha terminado
                 }
 
                 // Mover el puntero al siguiente nodo
                 h = h.Next;
             }
+            return false;
         }
         public Node Search(int dataToFind) // El dato buscado 
         {

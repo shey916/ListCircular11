@@ -101,15 +101,24 @@ internal class Program
 
             if (int.TryParse(input, out int datoEliminar))
             {
-                // ¡Llamada al método Delete() que implementaste!
-                myList.Delete(datoEliminar);
+                // 1. Llamamos a Delete y guardamos el resultado (true si se eliminó, false si no)
+                bool eliminadoExitosamente = myList.Delete(datoEliminar);
 
-                Console.WriteLine($"\nIntento de eliminación del número {datoEliminar} completado.");
-
-                Console.WriteLine("Estado actual de la lista después de la eliminación:");
-                    myList.Show(); // Muestra el estado actualizado
+                if (eliminadoExitosamente)
+                {
+                    Console.WriteLine($"\n El número {datoEliminar} fue eliminado con éxito.");
+                    Console.WriteLine("Estado actual de la lista:");
+                    myList.Show();
+                }
+                else
+                {
+                    // Este es el nuevo mensaje que soluciona tu problema
+                    Console.WriteLine($"\n El número {datoEliminar} NO se eliminó porque no fue encontrado en la lista.");
+                    Console.WriteLine("Estado actual de la lista (sin cambios):");
+                    myList.Show();
+                }
             }
-            else
+            else // Esto es el 'else' de TryParse (si el usuario no escribió un número)
             {
                 Console.WriteLine("Entrada inválida. Por favor, ingresa un número válido o 'salir'.");
             }
