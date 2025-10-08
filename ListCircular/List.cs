@@ -16,7 +16,7 @@ namespace ListCircular
                 this.head = null;
             }
 
-            public void Add(Node n)
+        public void Add(Node n)
             {
             Node h;
                 // Caso 1: La lista está vacía
@@ -192,5 +192,26 @@ namespace ListCircular
 
                 Console.WriteLine("..."); // Indicando que es circular
             }
+
+        public int Count()
+        {
+            // Caso: Lista vacía
+            if (head == null)
+            {
+                return 0;
+            }
+
+            int count = 0;
+            Node h = head;
+
+            // Se utiliza un do-while para asegurar que se cuenta al menos el primer nodo (head)
+            do
+            {
+                count++;
+                h = h.Next;
+            } while (h != head); // El bucle se detiene cuando volvemos a la cabeza
+
+            return count;
         }
     }
+}

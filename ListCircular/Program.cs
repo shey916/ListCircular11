@@ -20,10 +20,11 @@ internal class Program
             Console.WriteLine("2. Eliminar un número de la lista (Delete)");
             Console.WriteLine("3. Buscar un número en la lista (Search)");
             Console.WriteLine("4. Mostrar lista actual");
-            Console.WriteLine("5. Salir del programa");
+            Console.WriteLine("5. Contar elementos de la lista (Count)"); // ✅ Nueva opción
+            Console.WriteLine("6. Salir del programa"); // 👈 Se movió aquí
             Console.WriteLine("==============================================");
 
-            Console.Write("Tu opción (1-5): ");
+            Console.Write("Tu opción (1-6): ");
             opcion = Console.ReadLine();
             Console.WriteLine();
 
@@ -117,15 +118,22 @@ internal class Program
                     break;
 
                 case "5":
+                    // ✅ NUEVO: Contar elementos
+                    Console.WriteLine("--- METODO: COUNT ---");
+                    int total = myList.Count();
+                    Console.WriteLine($"La lista contiene {total} elemento(s).");
+                    break;
+
+                case "6":
                     Console.WriteLine("Saliendo del programa...");
                     break;
 
                 default:
-                    Console.WriteLine("Opción no válida. Por favor, selecciona un número del 1 al 5.");
+                    Console.WriteLine("Opción no válida. Por favor, selecciona un número del 1 al 6.");
                     break;
             }
 
-        } while (opcion != "5"); // El bucle se repite hasta que el usuario elige '5'
+        } while (opcion != "6"); // 👈 Ahora se sale con el 6
 
         Console.WriteLine("\n--- Fin del programa. Lista final ---");
         myList.Show();
