@@ -20,8 +20,8 @@ internal class Program
             Console.WriteLine("2. Eliminar un número de la lista (Delete)");
             Console.WriteLine("3. Buscar un número en la lista (Search)");
             Console.WriteLine("4. Mostrar lista actual");
-            Console.WriteLine("5. Contar elementos de la lista (Count)"); // ✅ Nueva opción
-            Console.WriteLine("6. Salir del programa"); // 👈 Se movió aquí
+            Console.WriteLine("5. Contar elementos de la lista (Count)"); 
+            Console.WriteLine("6. Salir del programa"); 
             Console.WriteLine("==============================================");
 
             Console.Write("Tu opción (1-6): ");

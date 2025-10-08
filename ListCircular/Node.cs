@@ -8,13 +8,13 @@ namespace ListCircular
 {
     internal class Node
     {
-            private int dato;
+            private int data;
             private Node next;
 
-            public int Dato
+            public int Data
             {
-                get { return dato; }
-                set { dato = value; }
+                get { return data; }
+                set { data = value; }
             }
 
             public Node Next
@@ -25,7 +25,7 @@ namespace ListCircular
 
             public Node(int dato)
             {
-                this.dato = dato;
+                this.data = dato;
                 this.next = null;
             }
         }

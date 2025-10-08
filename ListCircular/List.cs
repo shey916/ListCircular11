@@ -28,7 +28,7 @@ namespace ListCircular
                 }
 
                 // Caso 2: El nuevo nodo es menor que la cabeza (insertar al principio)
-                if (n.Dato < head.Dato)
+                if (n.Data < head.Data)
                 {
                     // Encontrar el último nodo para actualizar su puntero
                     h = head;
@@ -48,7 +48,7 @@ namespace ListCircular
                  h = head;
                 while (h.Next != head)
                 {
-                    if (n.Dato < h.Next.Dato)
+                    if (n.Data < h.Next.Data)
                     {
                         // Insertar en el medio
                         n.Next = h.Next;
@@ -74,7 +74,7 @@ namespace ListCircular
             }
 
             // Caso 2: Eliminar la Cabeza (head)
-            if (head.Dato == datoEliminar)
+            if (head.Data == datoEliminar)
             {
                 // Si solo hay un nodo
                 if (head.Next == head)
@@ -107,7 +107,7 @@ namespace ListCircular
             // El bucle se detiene cuando h.Next llega al head, por eso se comprueba h.Next.Dato
             while (h.Next != head)
             {
-                if (h.Next.Dato == datoEliminar)
+                if (h.Next.Data == datoEliminar)
                 {
                     // Hemos encontrado el nodo a eliminar (es h.Next).
 
@@ -123,6 +123,7 @@ namespace ListCircular
             }
             return false;
         }
+
         public Node Search(int dataToFind) // El dato buscado 
         {
             // 1. COMPROBACIÓN 
@@ -138,7 +139,7 @@ namespace ListCircular
             do
             {
                 // Comprobación de dato
-                if (n.Dato == dataToFind)
+                if (n.Data == dataToFind)
                 {
                     return n;
                 }
@@ -153,7 +154,6 @@ namespace ListCircular
             return null;
         }
 
-        // Método para verificar si un dato ya existe en la lista
         public bool Exists(int dato)
         {
             if (head == null)
@@ -164,7 +164,7 @@ namespace ListCircular
             Node h = head;
             do
             {
-                if (h.Dato == dato)
+                if (h.Data == dato)
                 {
                     return true; // El dato se encontró
                 }
@@ -174,7 +174,6 @@ namespace ListCircular
             return false; // El dato no se encontró
         }
 
-        // Método para mostrar el contenido de la lista
         public void Show()
             {
                 if (head == null)
@@ -186,7 +185,7 @@ namespace ListCircular
                 Node h = head;
                 do
                 {
-                    Console.Write(h.Dato + " -> ");
+                    Console.Write(h.Data + " -> ");
                     h = h.Next;
                 } while (h != head);
 
