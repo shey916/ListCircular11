@@ -26,7 +26,6 @@ internal class Program
 
             if (int.TryParse(input, out int dato))
             {
-                // Verifica si el dato ya existe antes de agregarlo
                 if (myList.Exists(dato))
                 {
                     Console.WriteLine("El dato ya existe. No se agregará a la lista.");
