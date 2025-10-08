@@ -124,7 +124,7 @@ namespace ListCircular
             return false;
         }
 
-        public Node Search(int dataToFind) // El dato buscado 
+        public Node Search(int data) // El dato buscado 
         {
             // 1. COMPROBACIÓN 
             if (head == null)
@@ -139,7 +139,7 @@ namespace ListCircular
             do
             {
                 // Comprobación de dato
-                if (n.Data == dataToFind)
+                if (n.Data == data)
                 {
                     return n;
                 }
