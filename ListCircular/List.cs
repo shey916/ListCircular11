@@ -64,7 +64,7 @@ namespace ListCircular
             }
 
         // --- Nuevo Método para Eliminar un Nodo ---
-        public bool Delete(int datoEliminar)
+        public bool Delete(int data)
         {
             Node h;
             // Caso 1: La lista está vacía
@@ -74,7 +74,7 @@ namespace ListCircular
             }
 
             // Caso 2: Eliminar la Cabeza (head)
-            if (head.Data == datoEliminar)
+            if (head.Data == data)
             {
                 // Si solo hay un nodo
                 if (head.Next == head)
@@ -107,7 +107,7 @@ namespace ListCircular
             // El bucle se detiene cuando h.Next llega al head, por eso se comprueba h.Next.Dato
             while (h.Next != head)
             {
-                if (h.Next.Data == datoEliminar)
+                if (h.Next.Data == data)
                 {
                     // Hemos encontrado el nodo a eliminar (es h.Next).
 
@@ -133,22 +133,22 @@ namespace ListCircular
             }
 
             // 2. INICIALIZACIÓN
-            Node n = head;
+            Node h = head;
 
             // 3. INICIO DEL BUCLE
             do
             {
                 // Comprobación de dato
-                if (n.Data == data)
+                if (h.Data == data)
                 {
-                    return n;
+                    return h;
                 }
 
                 // Avance al siguiente nodo
-                n = n.Next;
+                h = h.Next;
 
                 // Condición de Parada: El bucle continúa mientras 'n' no regrese a 'head'.
-            } while (n != head);
+            } while (h != head);
 
             // 4. Resultado Final (No encontrado)
             return null;
