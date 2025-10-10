@@ -1,6 +1,6 @@
-﻿// este archivo es mi program.cs
-using ListCircular;
+﻿using ListCircular;
 using System;
+using System.Threading;
 
 internal class Program
 {
@@ -10,133 +10,134 @@ internal class Program
         string input = string.Empty;
         string opcion = string.Empty;
 
-        Console.WriteLine("--- Menu de lista circular ---");
+        Console.WriteLine("--- Demo de Lista Enlazada Circular ---");
 
         do
         {
             Console.WriteLine("\n==============================================");
-            Console.WriteLine("Selecciona una opción:");
-            Console.WriteLine("1. Agregar un número a la lista (Add)");
-            Console.WriteLine("2. Eliminar un número de la lista (Delete)");
-            Console.WriteLine("3. Buscar un número en la lista (Search)");
-            Console.WriteLine("4. Mostrar lista actual");
-            Console.WriteLine("5. Contar elementos de la lista (Count)"); 
-            Console.WriteLine("6. Salir del programa"); 
+            Console.WriteLine("        Selecciona una opción:");
             Console.WriteLine("==============================================");
+            Console.WriteLine("1. Agregar un número (Add)");
+            Console.WriteLine("2. Eliminar un número (Delete)");
+            Console.WriteLine("3. Buscar un número (Search)");
+            Console.WriteLine("4. Contar elementos (Count)"); 
+            Console.WriteLine("5. Salir del programa");      
+            Console.WriteLine("----------------------------------------------");
 
-            Console.Write("Tu opción (1-6): ");
+            Console.Write("Tu opción (1-5): ");
             opcion = Console.ReadLine();
             Console.WriteLine();
 
             switch (opcion)
             {
                 case "1":
-                    // --- Parte de Agregar (Add) ---
-                    Console.WriteLine("--- METODO: AGREGAR ---");
-                    Console.Write("Ingresa el número a AGREGAR: ");
+                    // --- Caso Agregar (Add) ---
+                    Console.WriteLine("--- METODO: AGREGAR (ADD) ---");
+                    Console.Write("Ingresa el número a AGREGAR (entero): ");
                     input = Console.ReadLine();
 
-                    if (input.ToLower() != "menu" && int.TryParse(input, out int dato))
+                    if (int.TryParse(input, out int dato))
                     {
                         if (myList.Exists(dato))
                         {
-                            Console.WriteLine("El dato ya existe, no se puede agregar.");
-                            continue;
+                            Console.WriteLine($"El dato '{dato}' ya existe.");
+                        }
+                        else
+                        {
+                            Node n = new Node(dato);
+                            myList.Add(n);
+                            Console.WriteLine($"\nDato '{dato}' Agregado.");
                         }
 
-                        Node n = new Node(dato);
-                        myList.Add(n);
-
-                        Console.WriteLine("\nDato Agregado");
-                        Console.WriteLine("Estado actual de la lista:");
-                        myList.Show();
+                        // 🟢 MOSTRAR LISTA actual
+                        Console.Write("Lista Actual: "); // Se usa Write en lugar de WriteLine
+                        myList.ShowList();
                     }
-                    else if (input.ToLower() != "menu")
+                    else
                     {
-                        Console.WriteLine("Por favor, ingresa un número válido.");
+                        Console.WriteLine("Por favor, ingresa un número entero válido.");
                     }
                     break;
 
                 case "2":
-                    // --- Parte de Eliminación (Delete) ---
-                    Console.WriteLine("--- METODO: ELIMINAR ---");
-                    Console.Write("Ingresa el número a ELIMINAR: ");
+                    
+                    Console.WriteLine("--- METODO: ELIMINAR (DELETE) ---");
+                    Console.Write("Ingresa el número a ELIMINAR : ");
                     input = Console.ReadLine();
 
-                    if (input.ToLower() != "menu" && int.TryParse(input, out int datoEliminar))
+                    if (int.TryParse(input, out int datoEliminar))
                     {
                         bool eliminadoExitosamente = myList.Delete(datoEliminar);
 
                         if (eliminadoExitosamente)
                         {
-                            Console.WriteLine($"\n El número {datoEliminar} fue eliminado.");
-                            Console.WriteLine("Estado actual de la lista:");
-                            myList.Show();
+                            Console.WriteLine($"\n El número {datoEliminar} fue ELIMINADO.");
                         }
                         else
                         {
-                            Console.WriteLine($"\n El número {datoEliminar} no esta en la lista");
-                            Console.WriteLine("Estado actual de la lista (sin cambios):");
-                            myList.Show();
+                            Console.WriteLine($"\n El número {datoEliminar} no se encuentra en la lista.");
                         }
+                       
+                        Console.WriteLine("Estado actual de la lista:");
+                        myList.ShowList();
                     }
-                    else if (input.ToLower() != "menu")
+                    else
                     {
                         Console.WriteLine("Por favor, ingresa un número válido.");
                     }
                     break;
 
                 case "3":
-                    // --- Parte de Búsqueda (Search) ---
-                    Console.WriteLine("--- METODO: BUSCAR ---");
-                    Console.Write("Ingresa el número a BUSCAR: ");
+                    
+                    Console.WriteLine("--- METODO: BUSCAR (SEARCH) ---");
+                    Console.Write("Ingresa el número a BUSCAR : ");
                     input = Console.ReadLine();
 
-                    if (input.ToLower() != "menu" && int.TryParse(input, out int datoBuscado))
+                    if (int.TryParse(input, out int datoBuscado))
                     {
                         Node resultado = myList.Search(datoBuscado);
 
                         if (resultado != null)
                         {
-                            Console.WriteLine($"El número {datoBuscado} esta en la lista.");
+                            Console.WriteLine($"\n El dato fue ENCONTRADO.  {resultado}");
                         }
                         else
                         {
-                            Console.WriteLine($"El número {datoBuscado} no esta en la lista.");
+                            Console.WriteLine($"\n El número {datoBuscado} no está en la lista.");
                         }
+                        
+                        Console.WriteLine("\nEstado actual de la lista:");
+                        myList.ShowList();
                     }
-                    else if (input.ToLower() != "menu")
+                    else
                     {
                         Console.WriteLine("Por favor, ingresa un número válido.");
                     }
                     break;
 
-                case "4":
-                    // --- Mostrar Lista ---
-                    Console.WriteLine("--- LISTA ACTUAL ---");
-                    myList.Show();
-                    break;
-
-                case "5":
-                    // ✅ NUEVO: Contar elementos
+                case "4": 
+                    
                     Console.WriteLine("--- METODO: COUNT ---");
                     int total = myList.Count();
-                    Console.WriteLine($"La lista contiene {total} elemento(s).");
+                    Console.WriteLine($"\n La lista contiene {total} elemento(s).");
+                    Console.WriteLine("\nEstado actual de la lista:");
+                    myList.ShowList();
                     break;
 
-                case "6":
-                    Console.WriteLine("Saliendo del programa...");
+                case "5": 
+                    Console.WriteLine("\nSaliendo del programa en 3 segundos...");
+                    Thread.Sleep(3000);
                     break;
 
                 default:
-                    Console.WriteLine("Opción no válida. Por favor, selecciona un número del 1 al 6.");
+                    Console.WriteLine("Opción no válida. Por favor, selecciona un número del 1 al 5.");
                     break;
             }
 
-        } while (opcion != "6"); // 👈 Ahora se sale con el 6
+        } while (opcion != "5"); 
 
         Console.WriteLine("\n--- Fin del programa. Lista final ---");
-        myList.Show();
+        myList.ShowList();
         Console.ReadKey();
     }
 }

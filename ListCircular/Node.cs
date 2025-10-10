@@ -23,10 +23,15 @@ namespace ListCircular
                 set { next = value; }
             }
 
-            public Node(int dato)
+            public Node(int data)
             {
-                this.data = dato;
+                this.data = data;
                 this.next = null;
             }
+        public override string ToString()
+        {
+            // Usando el nombre de la variable de instancia 'data'
+            return "Dato:" + data;
         }
+    }
     }

@@ -154,7 +154,7 @@ namespace ListCircular
             return null;
         }
 
-        public bool Exists(int dato)
+        public bool Exists(int data)
         {
             if (head == null)
             {
@@ -164,7 +164,7 @@ namespace ListCircular
             Node h = head;
             do
             {
-                if (h.Data == dato)
+                if (h.Data == data)
                 {
                     return true; // El dato se encontró
                 }
@@ -174,23 +174,24 @@ namespace ListCircular
             return false; // El dato no se encontró
         }
 
-        public void Show()
+        public void ShowList()
+        {
+            if (head == null)
             {
-                if (head == null)
-                {
-                    Console.WriteLine("La lista está vacía.");
-                    return;
-                }
-
-                Node h = head;
-                do
-                {
-                    Console.Write(h.Data + " -> ");
-                    h = h.Next;
-                } while (h != head);
-
-                Console.WriteLine("..."); // Indicando que es circular
+                Console.WriteLine("La lista está vacía.");
+                return;
             }
+
+            Node h = head;
+            do
+            {
+                // Llama al método ToString() del nodo, que retorna "Dato:X"
+                Console.Write(h.ToString() + " -> ");
+                h = h.Next;
+            } while (h != head);
+
+            Console.WriteLine("...");
+        }
 
         public int Count()
         {
