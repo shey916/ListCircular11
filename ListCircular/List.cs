@@ -174,23 +174,30 @@ namespace ListCircular
             return false; // El dato no se encontró
         }
 
-        public void ShowList()
+        public string ObtenerListado()
         {
+            // 1. Si está vacía, devolvemos el mensaje en lugar de imprimirlo
             if (head == null)
             {
-                Console.WriteLine("La lista está vacía.");
-                return;
+                return "La lista está vacía.";
             }
 
+            StringBuilder sb = new StringBuilder();
             Node h = head;
+
+            // 2. Recorremos concatenando el texto en memoria
             do
             {
-                // Llama al método ToString() del nodo, que retorna "Dato:X"
-                Console.Write(h.ToString() + " -> ");
+                // Agregamos el dato y la flecha al constructor de texto
+                sb.Append(h.ToString() + " -> ");
                 h = h.Next;
             } while (h != head);
 
-            Console.WriteLine("...");
+            // 3. Agregamos el final estético que tenías
+            sb.Append("...");
+
+            // 4. Retornamos todo el texto construido
+            return sb.ToString();
         }
 
         public int Count()

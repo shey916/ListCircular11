@@ -49,9 +49,9 @@ internal class Program
                             Console.WriteLine($"\nDato '{dato}' Agregado.");
                         }
 
-                        // 🟢 MOSTRAR LISTA actual
-                        Console.Write("Lista Actual: "); // Se usa Write en lugar de WriteLine
-                        myList.ShowList();
+                        // MOSTRAR LISTA actual
+                        Console.Write("Lista Actual: ");
+                        Console.WriteLine(myList.ObtenerListado());
                     }
                     else
                     {
@@ -79,7 +79,7 @@ internal class Program
                         }
                        
                         Console.WriteLine("Estado actual de la lista:");
-                        myList.ShowList();
+                        myList.ObtenerListado();
                     }
                     else
                     {
@@ -107,7 +107,7 @@ internal class Program
                         }
                         
                         Console.WriteLine("\nEstado actual de la lista:");
-                        myList.ShowList();
+                        myList.ObtenerListado();
                     }
                     else
                     {
@@ -121,7 +121,7 @@ internal class Program
                     int total = myList.Count();
                     Console.WriteLine($"\n La lista contiene {total} elemento(s).");
                     Console.WriteLine("\nEstado actual de la lista:");
-                    myList.ShowList();
+                    myList.ObtenerListado();
                     break;
 
                 case "5": 
@@ -137,7 +137,7 @@ internal class Program
         } while (opcion != "5"); 
 
         Console.WriteLine("\n--- Fin del programa. Lista final ---");
-        myList.ShowList();
+        myList.ObtenerListado();
         Console.ReadKey();
     }
 }
